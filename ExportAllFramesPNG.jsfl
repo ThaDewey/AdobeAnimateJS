@@ -1,5 +1,8 @@
 ﻿var document = fl.getDocumentDOM();
 var currTimeline = document.getTimeline();
+var filePathURI = flash.documents[0].pathURI; 
+var fileName = fl.documents[0].name;
+
 
 function getKeyFrames(tml) {
 
@@ -27,8 +30,10 @@ function getKeyFrames(tml) {
 var toast = getKeyFrames(currTimeline);
 toast[0].forEach(exportPNG);
 
+
 function exportPNG(element, i, array) {
 	fl.trace(element + ","+ i);
 	currTimeline.currentFrame = element;
-	fl.getDocumentDOM().exportPNG("file:///E:/Desktop/New folder (3)/clock"+element+".png", true, true);
+	fl.getDocumentDOM().exportPNG(filePathURI.slice(0,-fileName.length)+"thumbs_"+element+".png", true, true);
+	
 }
